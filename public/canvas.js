@@ -8,6 +8,16 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 const d = new Date();
+
+/**
+ * Drawing obj
+ * {
+ * 	startTime: get the starting time for calculations
+ *  dimensions: width of canvas that's drawn on, might need to make it reactive?
+ *  drawing: array of [timestamp, drawingPointX, drawingPointY],
+ * 	color: [background_color, foreground_color]
+ * }
+ */
 var drawingObj = new Object();
 
 let isDrawing = false;
@@ -30,7 +40,8 @@ document.getElementById('togglePlay').addEventListener("click", function(e) {
 });
 
 drawingObj.drawing = [];
-
+drawingObj.dimensions = [canvas.width, canvas.height];
+drawingObj.color = ["#" + getParameterByName("background_color"), "#" + getParameterByName("foreground_color")];
 
 if (window.Worker){
 
