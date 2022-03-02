@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PenDancer</title>
+</head>
+<body>
+	<script>
+		function getParameterByName(name, url = window.location.href) {
+		    name = name.replace(/[\[\]]/g, '\\$&');
+		    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
+	</script>
+
+	<form action="/track_select" method="post">
+		<input type="text" name="searchVal" placeholder="Search for a track, then press enter">
+		<input type="hidden" name="access_token" id="access_token_1" value="">
+		<label for="background_color">Pick a background color:</label>
+		<input type="color" name="background_color" value="#ffffcc">
+		<label for="foreground_color">Pick a pen color:</label>
+		<input type="color" name="foreground_color" value="#ff66cc">
+		<input type="submit" value="Go"/>
+	</form>
+
+	<script>
+		window.onload = function() {
+			document.getElementById("access_token_1").value = getParameterByName("access_token");
+		}
+	</script>
+</body>
+</html>
